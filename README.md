@@ -1,119 +1,112 @@
-# Privacy Policy for Kaeleo
+# Kaeleo Privacy Policy
 
-**Last updated: June 8, 2026**
+Effective date: 19 July 2026
+Contact: marceloluengoquinones@gmail.com
 
-Kaeleo ("the app", "we", "us") is a project, client, task, and note management app
-for iPhone and iPad. This policy explains what data the app handles and how your
-privacy is protected. The short version: **your data stays on your device and in
-your own iCloud account. We do not have a server, we do not collect your content,
-and we do not sell or share your data with anyone.**
+This policy describes the data Kaeleo stores locally, syncs through your private
+iCloud account, and sends to Cloud AI only when you explicitly approve a
+feature. The App Store privacy answers and the submitted binary are intended to
+match this policy.
 
-If you have any questions about this policy, contact us at
-**marceloluengoquinones@gmail.com**.
+## What Kaeleo stores
 
----
+Projects, tasks, notes, reminders, recordings, transcripts, attachments,
+posture calibration, and 3D scan data are stored locally so Kaeleo can provide
+its core features. When iCloud sync is available, workspace records and
+attachments sync through the user's private CloudKit container. This includes
+the latitude/longitude and place label selected for an arrival/departure
+reminder, plus 3D scan model attachments and scan metadata. Profile name, role,
+and preferences use Apple's private iCloud key-value store.
 
-## 1. Who is responsible for your data
+Location is used only for user-created arrival/departure reminders and is never
+tracked continuously in the background. Apple Health data is accessed only for
+Focus Wellness and remains in HealthKit and transient in-memory processing;
+Kaeleo does not store HealthKit samples or HealthKit-derived personal health
+data in app-managed iCloud.
 
-Kaeleo is developed by Marcelo Luengo. Because the app stores your content locally
-on your device and (optionally) in your personal iCloud account, **you remain in
-control of your data at all times.** The developer cannot access the content you
-create in the app.
+## Permissions and device data
 
-## 2. What data the app handles
+Kaeleo requests protected access only when a related feature is started:
 
-All data you enter into Kaeleo — including projects, clients, notes, tasks,
-reminders, checklists, drawings, audio recordings, photos, attached files, and
-categories — is created and stored **on your device**. We do not transmit this
-content to any server operated by us.
+- Camera: text/document scanning, note photos and videos, LiDAR room or object
+  capture on supported hardware, and optional on-device TrueDepth posture
+  alignment.
+- Microphone and speech recognition: note recordings, dictation, and Luna Live
+  Voice.
+- Motion and AirPods route data: optional posture cues.
+- Location: a user-selected arrival/departure reminder region, not continuous
+  tracking.
+- Files and Photos: content selected through Apple's system pickers.
 
-### Information you provide
-- **Your content:** projects, clients, notes, tasks, reminders, files, drawings,
-  audio notes, photos, and any text you type.
+TrueDepth facial/depth alignment is transient, processed on the device, and is
+not stored, transmitted, or used to identify you. You can decline any permission
+and continue to use unrelated local features.
 
-### Device permissions the app may request
-The app only requests a permission when you use the feature that needs it, and you
-can decline or revoke any permission in iOS Settings:
+HealthKit, AirPods motion, reminder location, LiDAR meshes, and TrueDepth
+alignment are never sent to Kaeleo's Cloud AI service.
+Reminder coordinates and user-captured 3D scan model data may sync through the
+private CloudKit workspace when iCloud sync is enabled.
 
-| Permission | Why it is used |
-|------------|----------------|
-| **Calendar** | To optionally mirror your device calendar events into the app as tasks, and to write changes back when you edit them. Calendar data stays on your device / in your iCloud. |
-| **Camera** | To take photos to attach to notes, tasks, or projects. |
-| **Microphone** | To record audio notes. |
-| **Notifications** | To deliver reminders you schedule and to keep your data in sync across your devices. |
+## Optional Cloud AI
 
-The app does **not** request access to your location, contacts, or photo library.
-(Photos are selected through Apple's system picker, which does not give the app
-access to your full library.)
+Kaeleo does not send content to Cloud AI unless you explicitly allow the
+specific feature immediately before its first transfer. The permissions are:
 
-## 3. iCloud sync (CloudKit)
+- **Luna text and files:** prompts, selected workspace context, conversation
+  context, and selected attachments.
+- **Luna Live Voice:** microphone audio, speech transcripts, and selected Luna
+  context while a Live session is active.
+- **Meeting analysis:** a selected recording transcript, note/project context,
+  and selected document attachments.
 
-If you are signed in to iCloud, Kaeleo can sync your content across your Apple
-devices using Apple's **CloudKit private database** and iCloud Drive. This means:
+Kaeleo's authenticated Cloudflare service forwards permitted requests to OpenAI
+to produce the requested result. OpenAI API data is not used to train models by
+default. OpenAI abuse-monitoring records may be retained for up to 30 days.
+Background meeting responses use OpenAI's background processing and may be
+retained under OpenAI's API retention policy; Kaeleo's authenticated poll token
+expires after about nine minutes and Kaeleo does not retain the meeting
+transcript in its own database.
 
-- Your data is stored in **your own iCloud account**, governed by
-  [Apple's Privacy Policy](https://www.apple.com/legal/privacy/).
-- The developer **cannot read, access, or retrieve** data stored in your private
-  iCloud database.
-- If you are not signed in to iCloud, your data simply stays on your device.
+Luna web-search queries are sent only to service the selected request with
+OpenAI's no-storage request setting. Kaeleo does not keep a search-history
+database or use searches for advertising or profiling.
 
-You can disable iCloud sync at any time in iOS Settings.
+Kaeleo does not send Apple Health data, facial/depth geometry, continuous
+location, or private 3D scan meshes to Cloud AI. Kaeleo does not use this data
+for advertising, tracking, marketing, or profiling.
 
-## 4. Weather information
+## Security and identifiers
 
-Some features may display weather for a location you choose. Weather data is
-provided by **Apple Weather (WeatherKit)**. Apple's handling of this request is
-governed by [Apple's Privacy Policy](https://www.apple.com/legal/privacy/). The app
-does not track your device location.
+Short-lived Cloud AI session credentials and App Attest identifiers are stored
+in the device Keychain. App Attest helps the service verify the installation; it
+is not an advertising identifier. Requests use HTTPS/WSS. Kaeleo does not use
+the App Tracking Transparency framework because it does not track users.
 
-## 5. On-device intelligence
+## Your choices and deletion
 
-Features such as generating category artwork (Image Playground), lifting a subject
-from an image, and any text assistance run **on your device** using Apple's
-on-device frameworks. Your content is not sent to us for these features.
+You can decline or revoke each Cloud AI permission at **Settings → Privacy
+Choices**. Revocation stops future transfers. It cannot erase provider security
+logs that were already created.
 
-## 6. Purchases and subscriptions
+You can delete projects, notes, reminders, recordings, attachments, and scans
+from Kaeleo. Deleted workspace items move to **Recently Deleted** for the
+retention period shown in the app and are then purged. Deleting the app removes
+local data, while private iCloud copies are managed through your Apple account
+and iCloud controls. Provider security records follow the provider retention
+rules described above and cannot be erased by Kaeleo.
 
-Kaeleo offers an optional premium subscription and a lifetime purchase through
-**Apple's App Store / StoreKit**. All payments are processed by Apple. We do **not**
-receive or store your payment details (card numbers, billing address, etc.). We do
-not use any third-party payment or subscription-analytics provider. Apple's handling
-of purchases is governed by [Apple's Privacy Policy](https://www.apple.com/legal/privacy/).
+## Third-party services
 
-## 7. Analytics, advertising, and tracking
+Apple provides iCloud/CloudKit, HealthKit, MusicKit, and system permission
+services under Apple's terms and privacy controls. Cloudflare and OpenAI process
+only feature data you authorize and apply their own security, retention, and
+privacy terms. Review [Cloudflare's Privacy Policy](https://www.cloudflare.com/policies/privacy/)
+and [OpenAI's API data controls](https://developers.openai.com/api/docs/guides/your-data)
+for the provider rules that apply alongside this policy.
 
-Kaeleo contains **no third-party analytics, no advertising, and no tracking SDKs.**
-We do not build advertising profiles, and we do not track you across other apps or
-websites.
+## Contact
 
-## 8. Data sharing
-
-We do **not** sell, rent, or share your personal data with third parties. The only
-data transfers that occur are between your own device and your own iCloud account
-(via Apple), which we cannot access.
-
-## 9. Data retention and deletion
-
-- Items you delete are moved to a **Recently Deleted** area and permanently removed
-  after 30 days, or immediately if you choose to delete them permanently.
-- **Deleting the app** removes all data stored locally on that device.
-- Data synced to iCloud can be managed or deleted in **iOS Settings → your name →
-  iCloud**, or by signing out of iCloud.
-
-## 10. Children's privacy
-
-Kaeleo is not directed to children under the age of 13, and we do not knowingly
-collect personal information from children.
-
-## 11. Changes to this policy
-
-We may update this Privacy Policy from time to time. Changes will be posted at this
-page, and the "Last updated" date above will be revised.
-
-## 12. Contact
-
-If you have questions or requests regarding this Privacy Policy or your data, please
-contact:
+For privacy questions, deletion requests, or support, contact:
 
 **Marcelo Luengo**
-Email: **marceloluengoquinones@gmail.com**
+**marceloluengoquinones@gmail.com**
